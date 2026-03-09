@@ -1,0 +1,11 @@
+﻿TC-ID;Titel;Systemer;Testhandlinger;Forventet resultat;Status;Bemærkninger
+UT-AD-01;AD ressource eksisterer i TST;AD;Søg på ressourcenavn (WXXXXX) i AD og verificer at det eksisterer i TST-gruppen.;Ressourcen findes i TST og er ikke til stede i PROD-gruppen.;Ikke udført;Gentages pr. ressource.
+UT-AD-02;AD ressource eksisterer i PROD;AD;Søg på ressourcenavn i AD og verificer at det eksisterer i PROD-gruppen.;Ressourcen findes kun i PROD og ikke i TST-gruppen.;Ikke udført;
+UT-AD-03;Ingen krydsforurening: TST-ressource ikke i PROD-gruppe;AD;For hvert TST-ressourcenavn: Tjek at det IKKE optræder i nogen PROD AD-gruppe.;Ingen TST-ressource er medlem af en PROD-gruppe.;Ikke udført;Kritisk for separationsvalidering.
+UT-AD-04;Ressourcenavn-konvention overholdes;AD;Gennemgå alle nye AD-ressourcenavne og kontrollér at de følger konventionen (præfiks, miljøbetegnelse m.m.).;Alle navne matcher mønster defineret i README.;Ikke udført;
+UT-OMADA-01;Omada-rolle indeholder korrekte AD-ressourcer (TST);Omada;Åbn Omada-rollen for TST og verificer at den indeholder præcis de AD-ressourcer som mapningsfilen angiver.;Rolle indeholder kun TST-ressourcer — ingen PROD.;Ikke udført;
+UT-OMADA-02;Omada-rolle indeholder korrekte AD-ressourcer (PROD);Omada;Åbn Omada PROD-rollen og verificer ressourceindhold.;Rolle indeholder kun PROD-ressourcer — ingen TST.;Ikke udført;
+UT-DCS-01;DCS ProcesRolleGruppe indeholder korrekte Omada-roller;DCS;Åbn ProcesRolleGruppen i DCS og kontrollér at den indeholder præcis de forventede Omada-roller jf. mapning.;Korrekte roller er tilknyttet. Ingen overflødige roller.;Ikke udført;
+UT-DCS-02;DCS videresender til korrekt miljø (TST→TST, PROD→PROD);DCS;Verificer DCS-opsætning: TST-gruppen peger på TST-endpoint og PROD-gruppen peger på PROD-endpoint.;Ingen krydspegende endpoints.;Ikke udført;Konfigurationstjek, ikke run-time.
+UT-AOGD-01;Indblikskode er koblet til en MeddelelsestypeGruppe;AogD;For hver Indblikskode i tabellen: verificer at der er tilknyttet mindst én meddelelsestypegruppe.;Ingen ukoblede Indblikskoder.;Ikke udført;Skal afdækkes fuldstændigt inden produktionssætning.
+UT-AOGD-02;Indblikskode-navne matcher AD-ressourcenavne;AogD;Sammenlign Indblikskoder i AogD-tabellen med dcs_to_aogd.csv — kontrollér at alle koder optræder.;100% match. Ingen ukendte eller manglende koder.;Ikke udført;
